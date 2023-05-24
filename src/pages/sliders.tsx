@@ -1,5 +1,9 @@
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { DeleteOutlined } from '@ant-design/icons';
 import { Avatar, Card, Col, Row } from 'antd';
+
+import Ddown from "../components/slider/dropdown";
+
+import DeleteSlider from "../components/slider/delete";
 
 const { Meta } = Card;
 
@@ -16,9 +20,8 @@ const App = () => {
             />
           }
           actions={[
-            <SettingOutlined key="setting" />,
-            <EditOutlined key="edit" />,
-            <EllipsisOutlined key="ellipsis" />,
+            <Ddown />,
+            <DeleteSlider />,
           ]}
         >
           <Meta
@@ -39,9 +42,8 @@ const App = () => {
             />
           }
           actions={[
-            <SettingOutlined key="setting" />,
-            <EditOutlined key="edit" />,
-            <EllipsisOutlined key="ellipsis" />,
+            <Ddown />,
+            <DeleteOutlined key="ellipsis" />,
           ]}
         >
           <Meta
@@ -62,9 +64,8 @@ const App = () => {
             />
           }
           actions={[
-            <SettingOutlined key="setting" />,
-            <EditOutlined key="edit" />,
-            <EllipsisOutlined key="ellipsis" />,
+            <Ddown />,
+            <DeleteOutlined key="ellipsis" />,
           ]}
         >
           <Meta

@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons';
 import { Menu, Layout } from 'antd';
 import type { MenuProps } from 'antd';
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 const { Sider } = Layout;
@@ -32,10 +32,10 @@ function getItem(
 const items: MenuItem[] = [
   getItem(<NavLink to={'/'}>Dashboard</NavLink>, 'home', <HomeOutlined />),
   getItem(<NavLink to={'sliders'}>Sliders</NavLink>, 'sliders', <DesktopOutlined />),
-  getItem(<Link to={'medialist'}>Media</Link>, 'medialist', <FileOutlined />),
+  getItem(<NavLink to={'medialist'}>Media</NavLink>, 'medialist', <FileOutlined />),
   getItem('Accounts', 'userchild', <TeamOutlined />, [
-    getItem(<Link to={'users'}>Master Account</Link>, 'users'),
-    getItem('Sub Account', 'subaccount')
+    getItem(<NavLink to={'users'}>Master Account</NavLink>, 'users'),
+    getItem(<NavLink to={'sliders/create'}>Sub Account</NavLink>, 'subaccount')
   ]),
   getItem('Settings', '7', <SlidersOutlined />),
 ];
