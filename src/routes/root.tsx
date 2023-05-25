@@ -1,5 +1,5 @@
 import Main from '../main';
-import ErrorPage from "../pages/errorpage";
+import ErrorPage from "../pages/404";
 import Medialist from "../pages/medialist";
 import Users from "../pages/users";
 import Sliders from "../pages/sliders";

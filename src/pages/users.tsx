@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Avatar, Button, List, Skeleton } from 'antd';
+import SubUser from "./user/subuser";
 
 interface DataType {
   gender?: string;
@@ -74,22 +75,24 @@ const App: React.FC = () => {
     <List
       className="demo-loadmore-list"
       loading={initLoading}
-      itemLayout="horizontal"
       loadMore={loadMore}
       dataSource={list}
       renderItem={(item) => (
+        <>
         <List.Item
-          actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
+          actions={[<Button type="link" key="list-loadmore-edit">edit</Button>, <Button type="link" key="list-loadmore-more">more</Button>]}
         >
           <Skeleton avatar title={false} loading={item.loading} active>
             <List.Item.Meta
-              avatar={<Avatar src={item.picture.large} />}
+              avatar={<Avatar style={{ backgroundColor: '#87d068' }} size={40}>MASTER</Avatar>}
               title={<a href="https://ant.design">{item.name?.last}</a>}
               description="Ant Design, a design language for background applications, is refined by Ant UED Team"
             />
-            <div>content</div>
+            
           </Skeleton>
         </List.Item>
+        <SubUser />
+        </>
       )}
     />
   );

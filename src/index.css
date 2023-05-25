@@ -29,3 +29,6 @@ code {
   margin: 16px;
   background: rgba(255, 255, 255, 0.3);
 }
+.ant-list .ant-list-item .ant-list-item-meta .ant-list-item-meta-title {
+  margin: 0 0 4px 0;
+}

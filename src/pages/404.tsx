@@ -1,6 +1,6 @@
 import { useRouteError } from "react-router-dom";
 import { isRouteErrorResponse } from "react-router-dom";
-import { Empty } from 'antd';
+import { Button, Empty, Result } from 'antd';
 
 export default function ErrorPage() {
   const error = useRouteError();
@@ -8,19 +8,12 @@ export default function ErrorPage() {
 
   if (isRouteErrorResponse(error)) {
     return (
-      <Empty
-        imageStyle={{ height: 100 }}
-        description={
-          <>
-          <p>Sorry, an unexpected error has occurred.</p>
-          <span>
-            {error.statusText || error.data.message}
-          </span>
-          <p>{error.data?.message && <p>{error.data.message}</p>}</p>
-          </>
-        }
-      >
-      </Empty>
+      <Result
+        status="404"
+        title="404"
+        subTitle="Sorry, the page you visited does not exist."
+        extra={<Button href="/home" type="primary">Back Home</Button>}
+      />
     );
   } else {
     return <Empty
