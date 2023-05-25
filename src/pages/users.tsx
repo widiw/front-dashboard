@@ -73,6 +73,7 @@ const App: React.FC = () => {
 
   return (
     <List
+      itemLayout="vertical"
       className="demo-loadmore-list"
       loading={initLoading}
       loadMore={loadMore}
