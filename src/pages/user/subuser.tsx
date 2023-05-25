@@ -6,7 +6,7 @@ const App: React.FC = () => {
   const contentStyle: React.CSSProperties = {
     color: token.colorTextTertiary,
     backgroundColor: token.colorFillAlter,
-    padding: '0 24px 0',
+    padding: '0 0 0 24px',
   };
 
   const data = [
