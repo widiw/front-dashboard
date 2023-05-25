@@ -1,14 +1,20 @@
-import { DeleteOutlined } from '@ant-design/icons';
-import { Avatar, Card, Col, Row } from 'antd';
-
+import { Avatar, Card, Col, Row, Divider, Space } from 'antd';
 import Ddown from "../components/slider/dropdown";
-
 import DeleteSlider from "../components/slider/delete";
+import CreateSlider from "../components/slider/create";
 
 const { Meta } = Card;
 
 const App = () => {
   return <>
+  <Row gutter={16} align="middle" justify="start">
+    <Col>
+      <Space direction="vertical">
+        <CreateSlider />
+      </Space>
+    </Col>
+  </Row>
+  <Divider />
   <Row gutter={16} align="middle">
     <Col className="gutter-row" xs={24} sm={12} md={12} lg={8} xl={8}>
       <div>
@@ -43,7 +49,7 @@ const App = () => {
           }
           actions={[
             <Ddown />,
-            <DeleteOutlined key="ellipsis" />,
+            <DeleteSlider />,
           ]}
         >
           <Meta
@@ -65,7 +71,7 @@ const App = () => {
           }
           actions={[
             <Ddown />,
-            <DeleteOutlined key="ellipsis" />,
+            <DeleteSlider />,
           ]}
         >
           <Meta

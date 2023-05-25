@@ -3,7 +3,7 @@ import ErrorPage from "../pages/errorpage";
 import Medialist from "../pages/medialist";
 import Users from "../pages/users";
 import Sliders from "../pages/sliders";
-import CreateSlider from "../pages/slider/create";
+import Dashboard from '../pages/dashboard';
 
 import {
   createBrowserRouter,
@@ -17,6 +17,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "home",
+        element: <Dashboard />,
+      },
+      {
         path: "medialist",
         element: <Medialist />,
       },
@@ -27,12 +31,6 @@ const router = createBrowserRouter([
       {
         path: "sliders",
         element: <Sliders />,
-        children: [
-          {
-            path: "create",
-            element: <CreateSlider />
-          }
-        ]
       },
     ],
   },

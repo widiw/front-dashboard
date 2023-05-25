@@ -30,13 +30,10 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem(<NavLink to={'/'}>Dashboard</NavLink>, 'home', <HomeOutlined />),
+  getItem(<NavLink to={'home'}>Dashboard</NavLink>, 'home', <HomeOutlined />),
   getItem(<NavLink to={'sliders'}>Sliders</NavLink>, 'sliders', <DesktopOutlined />),
   getItem(<NavLink to={'medialist'}>Media</NavLink>, 'medialist', <FileOutlined />),
-  getItem('Accounts', 'userchild', <TeamOutlined />, [
-    getItem(<NavLink to={'users'}>Master Account</NavLink>, 'users'),
-    getItem(<NavLink to={'sliders/create'}>Sub Account</NavLink>, 'subaccount')
-  ]),
+  getItem(<NavLink to={'users'}>Accounts</NavLink>, 'users', <TeamOutlined />),
   getItem('Settings', '7', <SlidersOutlined />),
 ];
 
@@ -63,7 +60,8 @@ const App = () => {
 
   return(
     <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-      <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
+      <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} >
+      </div>
       <Menu theme="dark" defaultSelectedKeys={['home']} selectedKeys={pathactive} defaultOpenKeys={openchild} mode="inline" items={items} />
     </Sider>
   );
