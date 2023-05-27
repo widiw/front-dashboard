@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Button, List, Skeleton } from 'antd';
+import { Avatar, Button, Col, Divider, List, Row, Skeleton, Space } from 'antd';
 import SubUser from "./user/subuser";
+import CreateSlider from "../components/create";
+import ModalCreate from "../pages/user/create";
 
 interface DataType {
   gender?: string;
@@ -71,32 +73,46 @@ const App: React.FC = () => {
       </div>
     ) : null;
 
-  return (
-    <List
-      itemLayout="vertical"
-      className="demo-loadmore-list"
-      loading={initLoading}
-      loadMore={loadMore}
-      dataSource={list}
-      renderItem={(item) => (
-        <>
-        <List.Item
-          actions={[<Button type="link" key="list-loadmore-edit">edit</Button>, <Button type="link" key="list-loadmore-more">more</Button>]}
-        >
-          <Skeleton avatar title={false} loading={item.loading} active>
-            <List.Item.Meta
-              avatar={<Avatar style={{ backgroundColor: '#87d068' }} size={40}>MASTER</Avatar>}
-              title={<a href="https://ant.design">{item.name?.last}</a>}
-              description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-            />
-            
-          </Skeleton>
-        </List.Item>
-        <SubUser />
-        </>
-      )}
-    />
-  );
+  const Content = <ModalCreate />;
+
+  return <>
+    <Row gutter={16} align="middle" justify="start">
+      <Col>
+        <Space direction="vertical">
+          <CreateSlider data={Content} size={520} title='Create User' />
+        </Space>
+      </Col>
+    </Row>
+    <Divider />
+    <Row gutter={16} align="middle" justify="start">
+      <Col span={24}>
+        <List
+          itemLayout="vertical"
+          className="demo-loadmore-list"
+          loading={initLoading}
+          loadMore={loadMore}
+          dataSource={list}
+          renderItem={(item) => (
+            <>
+            <List.Item
+              actions={[<Button type="link" key="list-loadmore-edit">edit</Button>, <Button type="link" key="list-loadmore-more">more</Button>]}
+            >
+              <Skeleton avatar title={false} loading={item.loading} active>
+                <List.Item.Meta
+                  avatar={<Avatar style={{ backgroundColor: '#87d068' }} size={40}>MASTER</Avatar>}
+                  title={<a href="https://ant.design">{item.name?.last}</a>}
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                />
+                
+              </Skeleton>
+            </List.Item>
+            <SubUser />
+            </>
+          )}
+        />
+      </Col>
+    </Row>
+    </>;
 };
 
 export default App;

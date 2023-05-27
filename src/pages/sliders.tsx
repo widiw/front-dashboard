@@ -1,16 +1,19 @@
 import { Avatar, Card, Col, Row, Divider, Space } from 'antd';
 import Ddown from "../components/slider/dropdown";
 import DeleteSlider from "../components/slider/delete";
-import CreateSlider from "../components/slider/create";
+import CreateSlider from "../components/create";
+import ModalCreate from "../pages/slider/create";
 
 const { Meta } = Card;
 
 const App = () => {
+  const Content = <ModalCreate />;
+
   return <>
   <Row gutter={16} align="middle" justify="start">
     <Col>
       <Space direction="vertical">
-        <CreateSlider />
+        <CreateSlider data={Content} size={1000} title='Create New Slider' />
       </Space>
     </Col>
   </Row>
