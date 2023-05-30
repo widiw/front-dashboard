@@ -13,7 +13,7 @@ const App = () => {
   <Row gutter={16} align="middle" justify="start">
     <Col>
       <Space direction="vertical">
-        <CreateSlider data={Content} size={1000} title='Create New Slider' />
+        <CreateSlider data={Content} size={600} title='Create New Slider' />
       </Space>
     </Col>
   </Row>

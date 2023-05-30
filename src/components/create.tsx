@@ -16,7 +16,7 @@ const App = ( contents: { data: React.ReactNode, size: number, title: string; } 
         open={open}
         onCancel={() => setOpen(false)}
         footer={null}
-        width={contents.size}
+        //width={contents.size}
       >
         {contents.data}
       </Modal>

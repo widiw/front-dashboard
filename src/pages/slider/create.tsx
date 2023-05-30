@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
-import { Button, message, Steps, theme } from 'antd';
+import { Button, Form, FormInstance, message, Row, Steps, theme } from 'antd';
+import BasicInfo from './info';
 
 const steps = [
   {
     title: 'First',
-    content: 'First-content',
+    content: <BasicInfo />,
   },
   {
     title: 'Second',
-    content: 'Second-content',
+    content: <BasicInfo />,
   },
   {
     title: 'Last',
-    content: 'Last-content',
+    content: <BasicInfo />,
   },
 ];
 
 const App: React.FC = () => {
   const { token } = theme.useToken();
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(0);
 
   const next = () => {
     setCurrent(current + 1);
@@ -36,36 +37,63 @@ const App: React.FC = () => {
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
   const contentStyle: React.CSSProperties = {
-    lineHeight: '260px',
-    textAlign: 'center',
-    color: token.colorTextTertiary,
-    backgroundColor: token.colorFillAlter,
-    borderRadius: token.borderRadiusLG,
-    border: `1px dashed ${token.colorBorder}`,
+    //lineHeight: '260px',
+    //textAlign: 'center',
+    //color: token.colorTextTertiary,
+    //backgroundColor: token.colorFillAlter,
+    //borderRadius: token.borderRadiusLG,
+    //border: `1px dashed ${token.colorBorder}`,
     marginTop: 16,
+  };
+
+  //form handle
+  const [form] = Form.useForm();
+
+  const SubmitButton = ({ form, handleClick, btnText }: { form: FormInstance, handleClick: React.MouseEventHandler, btnText: String }) => {
+    const [submittable, setSubmittable] = React.useState(false);
+  
+    // Watch all values
+    const values = Form.useWatch([], form);
+  
+    React.useEffect(() => {
+      form.validateFields({ validateOnly: true }).then(
+        () => {
+          setSubmittable(true);
+        },
+        () => {
+          setSubmittable(false);
+        },
+      );
+    }, [form, values]);
+  
+    return (
+      <Button style={{ marginRight: '8px' }} type="primary" htmlType="submit" onClick={handleClick} disabled={!submittable}>
+        {btnText}
+      </Button>
+    );
   };
 
   return (
     <>
+      <Form form={form} name="validateOnly" layout="vertical" autoComplete="off">
       <Steps current={current} onChange={onChange} items={items} />
       <div style={contentStyle}>{steps[current].content}</div>
-      <div style={{ marginTop: 24 }}>
-        {current < steps.length - 1 && (
-          <Button type="primary" onClick={() => next()}>
-            Next
-          </Button>
-        )}
-        {current === steps.length - 1 && (
-          <Button type="primary" onClick={() => message.success('Processing complete!')}>
-            Done
-          </Button>
-        )}
+      <Row justify='end' >
+      <div>
         {current > 0 && (
-          <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
+          <Button style={{ marginRight: '8px' }} onClick={() => prev()}>
             Previous
           </Button>
         )}
+        {current < steps.length - 1 && (
+          <SubmitButton form={form} handleClick={() => next()} btnText={'Next'} />
+        )}
+        {current === steps.length - 1 && (
+          <SubmitButton form={form} handleClick={() => message.success('Processing complete!')} btnText={'Submit'} />
+        )}
       </div>
+      </Row>      
+      </Form>
     </>
   );
 };
