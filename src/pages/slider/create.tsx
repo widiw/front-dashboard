@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Form, FormInstance, message, Row, Steps, theme } from 'antd';
+import { Button, Divider, Form, FormInstance, message, Row, Steps } from 'antd';
 import BasicInfo from './info';
+import Schedule from './schedule';
+import ListFiles from './files';
 
 const steps = [
   {
@@ -9,16 +11,15 @@ const steps = [
   },
   {
     title: 'Second',
-    content: <BasicInfo />,
+    content: <Schedule />,
   },
   {
     title: 'Last',
-    content: <BasicInfo />,
+    content: <ListFiles />,
   },
 ];
 
 const App: React.FC = () => {
-  const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
 
   const next = () => {
@@ -34,16 +35,14 @@ const App: React.FC = () => {
     setCurrent(value);
   };
 
+  const onFinish = (values: any) => {
+    console.log('Received values of form:', values);
+  };
+
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
   const contentStyle: React.CSSProperties = {
-    //lineHeight: '260px',
-    //textAlign: 'center',
-    //color: token.colorTextTertiary,
-    //backgroundColor: token.colorFillAlter,
-    //borderRadius: token.borderRadiusLG,
-    //border: `1px dashed ${token.colorBorder}`,
-    marginTop: 16,
+    marginTop: 32,
   };
 
   //form handle
@@ -73,26 +72,32 @@ const App: React.FC = () => {
     );
   };
 
+  const formLayout = { labelCol: { span: 24 }, wrapperCol: { span: 24 } };
+
   return (
     <>
-      <Form form={form} name="validateOnly" layout="vertical" autoComplete="off">
-      <Steps current={current} onChange={onChange} items={items} />
-      <div style={contentStyle}>{steps[current].content}</div>
-      <Row justify='end' >
-      <div>
-        {current > 0 && (
-          <Button style={{ marginRight: '8px' }} onClick={() => prev()}>
-            Previous
-          </Button>
-        )}
-        {current < steps.length - 1 && (
-          <SubmitButton form={form} handleClick={() => next()} btnText={'Next'} />
-        )}
-        {current === steps.length - 1 && (
-          <SubmitButton form={form} handleClick={() => message.success('Processing complete!')} btnText={'Submit'} />
-        )}
-      </div>
-      </Row>      
+      <Divider />
+      <Form {...formLayout}
+        onFinish={onFinish}
+        form={form} name="validateOnly" layout="vertical" autoComplete="off"
+      >
+        <Steps current={current} onChange={onChange} items={items} />
+        <div style={contentStyle}>{steps[current].content}</div>
+        <Row justify='end' >
+          <Form.Item>
+            {current > 0 && (
+              <Button style={{ marginRight: '8px' }} onClick={() => prev()}>
+                Previous
+              </Button>
+            )}
+            {current < steps.length - 1 && (
+              <SubmitButton form={form} handleClick={() => next()} btnText={'Next'} />
+            )}
+            {current === steps.length - 1 && (
+              <SubmitButton form={form} handleClick={() => message.success('Processing complete!')} btnText={'Submit'} />
+            )}
+          </Form.Item>
+        </Row>      
       </Form>
     </>
   );

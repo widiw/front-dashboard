@@ -29,8 +29,15 @@ const SubmitButton = ({ form }: { form: FormInstance }) => {
 const App = () => {
   const [form] = Form.useForm();
 
+  const onFinish = (values: any) => {
+    console.log('Received values of form:', values);
+  };
+
   return (
-    <Form form={form} name="validateOnly" layout="vertical" autoComplete="off">
+    <Form form={form} name="validateOnly"
+      layout="vertical" autoComplete="off"
+      onFinish={onFinish}
+    >
       <Form.Item name="name" label="Name" rules={[{ required: true }]}>
         <Input />
       </Form.Item>
