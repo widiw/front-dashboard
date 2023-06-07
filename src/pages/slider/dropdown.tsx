@@ -1,18 +1,24 @@
-import type { MenuProps } from 'antd';
+import { Button, Drawer, MenuProps, Space } from 'antd';
 import { Dropdown, message } from 'antd';
 import { useState } from 'react';
 import { Modal } from 'antd';
-import { FileImageOutlined, SettingOutlined, EditOutlined } from '@ant-design/icons';
+import { FileImageOutlined, SettingOutlined, EditOutlined, CaretRightOutlined } from '@ant-design/icons';
+import Presentation from './carousel';
 
 const items: MenuProps['items'] = [
   {
+    label: 'Play',
+    key: 'play',
+    icon: <CaretRightOutlined />
+  },
+  {
     label: 'Configuration',
-    key: '1',
+    key: 'config',
     icon: <EditOutlined />
   },
   {
     label: 'Files',
-    key: '2',
+    key: 'files',
     icon: <FileImageOutlined />
   },
 ];
@@ -22,9 +28,18 @@ const App = () => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Content of the modal');
+  const [openPlay, setOpenPlay] = useState(false);
+
+  const playDrawer = () => {
+    setOpenPlay(true);
+  };
+
+  const onClosePlay = () => {
+    setOpenPlay(false);
+  };
 
   const onClick: MenuProps['onClick'] = ({ key }) => {
-    setOpen(true);
+    (key === 'play') ? playDrawer() : setOpen(true);
     message.info(`Click on item ${key}`);
   };
 
@@ -56,6 +71,23 @@ const App = () => {
       >
         <p>{modalText}</p>
       </Modal>
+      <Drawer
+        title="Drawer with extra actions"
+        placement="top"
+        width={500}
+        onClose={onClosePlay}
+        open={openPlay}
+        extra={
+          <Space>
+            <Button onClick={onClosePlay}>Cancel</Button>
+            <Button type="primary" onClick={onClosePlay}>
+              OK
+            </Button>
+          </Space>
+        }
+      >
+        <Presentation />
+      </Drawer>
     </>
   );
 }

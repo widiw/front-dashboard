@@ -1,6 +1,6 @@
 import { Avatar, Card, Col, Row, Divider, Space } from 'antd';
-import Ddown from "../components/slider/dropdown";
-import DeleteSlider from "../components/slider/delete";
+import Ddown from "./slider/dropdown";
+import DeleteSlider from "../pages/slider/delete";
 import CreateSlider from "../components/create";
 import ModalCreate from "../pages/slider/create";
 
