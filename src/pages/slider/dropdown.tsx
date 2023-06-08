@@ -72,19 +72,14 @@ const App = () => {
         <p>{modalText}</p>
       </Modal>
       <Drawer
-        title="Drawer with extra actions"
-        placement="top"
-        width={500}
+        className='media-slider'
+        placement="right"
+        width={'100%'}
+        height={'100%'}
         onClose={onClosePlay}
         open={openPlay}
-        extra={
-          <Space>
-            <Button onClick={onClosePlay}>Cancel</Button>
-            <Button type="primary" onClick={onClosePlay}>
-              OK
-            </Button>
-          </Space>
-        }
+        headerStyle={{ display: 'none' }}
+        bodyStyle={{ padding: 0 }}
       >
         <Presentation />
       </Drawer>
