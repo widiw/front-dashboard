@@ -25,7 +25,7 @@ const App = () => {
         </Player>
       </div>
       <div key="content-3" className="my-slide content">
-          <img alt="" src="1.jpeg" />
+          <img alt="" src="https://wallpapers.com/images/featured/wnxju2647uqrcccv.jpg" />
       </div>
       <div key="content-7" className="my-slide content">
           <iframe width="560" height="315" src="https://www.youtube.com/embed/n0F6hSpxaFc" />
