@@ -4,6 +4,7 @@ import Medialist from "../pages/medialist";
 import Users from "../pages/users";
 import Sliders from "../pages/sliders";
 import Dashboard from '../pages/dashboard';
+import Login from '../pages/user/login';
 
 import {
   createBrowserRouter,
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "home",
+        index: true,
         element: <Dashboard />,
       },
       {
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
         element: <Sliders />,
       },
     ],
+  },
+  {
+    path: "/auth/",
+    element: <Login />,
+    errorElement: <ErrorPage />,
   },
 ]);
 

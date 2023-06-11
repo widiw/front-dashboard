@@ -30,7 +30,7 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem(<NavLink to={'home'}>Dashboard</NavLink>, 'home', <HomeOutlined />),
+  getItem(<NavLink to={''}>Dashboard</NavLink>, 'home', <HomeOutlined />),
   getItem(<NavLink to={'sliders'}>Sliders</NavLink>, 'sliders', <DesktopOutlined />),
   getItem(<NavLink to={'medialist'}>Media</NavLink>, 'medialist', <FileOutlined />),
   getItem(<NavLink to={'users'}>Accounts</NavLink>, 'users', <TeamOutlined />),
